@@ -1,16 +1,14 @@
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../config/firebaseConfig";
 export const createProject = (project) => {
-  return (dispatch, getState, { getFirebase, getFirestore }) => {
-    // make async call to database
-    const firestore = getFirestore();
-    firestore
-      .collection("projects")
-      .add({
-        ...project,
-        authorFirstName: "Jay",
-        authorLastName: "Bee",
-        authorId: 12345,
-        createdAt: new Date(),
-      })
+  return (dispatch) => {
+    addDoc(collection(db, "projects"), {
+      ...project,
+      authorFirstName: "Jay",
+      authorLastName: "Bee",
+      authorId: 12345,
+      createdAt: new Date(),
+    })
       .then(() => {
         dispatch({ type: "CREATE_PROJECT", payload: project });
       })

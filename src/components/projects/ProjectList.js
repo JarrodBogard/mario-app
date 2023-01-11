@@ -2,6 +2,7 @@ import React from "react";
 import ProjectSummary from "../projects/ProjectSummary";
 
 const ProjectList = ({ projects }) => {
+  console.log(projects);
   const project =
     projects &&
     projects.map((project, index) => {
